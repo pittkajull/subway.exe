@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import Reveal from './Reveal.jsx'
 import SectionHead from './SectionHead.jsx'
 import { commandGroups } from '../data/content.js'
 
@@ -28,9 +27,8 @@ export default function Commands() {
     return commandGroups
       .map((group) => ({
         ...group,
-        items: group.items.filter(
-          (item) =>
-            `${item.name} ${item.args} ${item.desc}`.toLowerCase().includes(q),
+        items: group.items.filter((item) =>
+          `${item.name} ${item.args} ${item.desc}`.toLowerCase().includes(q),
         ),
       }))
       .filter((group) => group.items.length > 0)
@@ -44,74 +42,64 @@ export default function Commands() {
         <SectionHead
           index="03"
           kicker="commands"
-          title={
-            <>
-              Semua yang bisa <em>kamu ketik.</em>
-            </>
-          }
-          lede="Nggak ada menu, nggak ada hidden gesture. Ini daftar lengkapnya — sisanya cuma keyboard."
+          title="everything you can type."
+          lede="no menus, no hidden gestures. this is the whole list — the rest is just your keyboard."
         />
 
-        <div className="cmd-layout">
-          <aside className="cmd-side">
-            <label className="cmd-search">
-              <span aria-hidden="true">$</span>
-              <span className="sr-only">Cari command</span>
-              <input
-                ref={searchRef}
-                type="text"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="cari command…"
-                spellCheck="false"
-                autoComplete="off"
-              />
-              <kbd>/</kbd>
-            </label>
-
-            <p className="cmd-count">
-              {query.trim()
-                ? `${count} dari ${TOTAL} command cocok`
-                : `${TOTAL} command · 5 grup`}
-            </p>
-
-            <div className="cmd-note">
-              <p>
-                Semua command interaktif pakai prompt. Nggak ada flag panjang
-                yang perlu dihafal.
-              </p>
-              <p className="cmd-note__hint">
-                Contoh: <code>subwayexe post "halo dunia"</code>
-              </p>
-            </div>
-          </aside>
-
-          <div className="cmd-table">
-            {groups.length === 0 && (
-              <p className="cmd-empty">
-                <span aria-hidden="true">✗</span> Nggak ada command yang cocok
-                dengan <code>"{query.trim()}"</code>. Coba kata kunci lain.
-              </p>
-            )}
-
-            {groups.map((group, groupIndex) => (
-              <Reveal className="cmd-group" key={group.name} delay={groupIndex * 40}>
-                <h3 className="cmd-group__name">{group.name}</h3>
-                {group.items.map((item) => (
-                  <div className="cmd-row" key={item.name}>
-                    <code className="cmd-row__cmd">
-                      {item.name}
-                      {item.args && (
-                        <span className="cmd-row__arg"> {item.args}</span>
-                      )}
-                    </code>
-                    <p className="cmd-row__desc">{item.desc}</p>
-                  </div>
-                ))}
-              </Reveal>
-            ))}
-          </div>
+        <div className="cmd-search">
+          <span className="cmd-search__prompt" aria-hidden="true">
+            grep
+          </span>
+          <label className="sr-only" htmlFor="command-filter">
+            Filter commands
+          </label>
+          <input
+            id="command-filter"
+            ref={searchRef}
+            type="text"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="type to filter…"
+            spellCheck="false"
+            autoComplete="off"
+          />
+          <kbd>/</kbd>
         </div>
+
+        <p className="cmd-count">
+          {query.trim() ? `${count} of ${TOTAL} commands match` : `${TOTAL} commands · 5 groups`}
+        </p>
+
+        <div className="cmd-table">
+          {groups.length === 0 && (
+            <p className="cmd-empty">
+              <span aria-hidden="true">[!]</span> no command matches{' '}
+              <code>&quot;{query.trim()}&quot;</code>. try another keyword.
+            </p>
+          )}
+
+          {groups.map((group) => (
+            <div className="cmd-group" key={group.name}>
+              <h3 className="cmd-group__name">
+                <span aria-hidden="true">##</span> {group.name}
+              </h3>
+              {group.items.map((item) => (
+                <div className="cmd-row" key={item.name}>
+                  <code className="cmd-row__cmd">
+                    {item.name}
+                    {item.args && <span className="cmd-row__arg"> {item.args}</span>}
+                  </code>
+                  <span className="cmd-leader" aria-hidden="true" />
+                  <p className="cmd-row__desc">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <p className="cmd-footnote">
+          // every interactive command uses a prompt. no long flags to memorize.
+        </p>
       </div>
     </section>
   )

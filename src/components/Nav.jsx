@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 
 const LINKS = [
-  ['#kenapa', 'Kenapa CLI'],
-  ['#fitur', 'Fitur'],
-  ['#commands', 'Commands'],
-  ['#status', 'Status'],
-  ['#install', 'Instalasi'],
+  ['#why', 'why'],
+  ['#features', 'features'],
+  ['#commands', 'commands'],
+  ['#status', 'status'],
 ]
 
 export default function Nav() {
@@ -31,16 +30,9 @@ export default function Nav() {
     <header className={`nav ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="wrap nav__inner">
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
-          <img
-            className="brand__logo"
-            src="/logo.png"
-            alt=""
-            width="30"
-            height="27"
-          />
-          <span>
-            subway<span className="brand__exe">.exe</span>
-          </span>
+          <img className="brand__logo" src="/logo.png" alt="" width="24" height="22" />
+          <span className="brand__name">subway.exe</span>
+          <span className="brand__tag">/ alpha</span>
         </a>
 
         <nav className="nav__links" aria-label="Navigasi utama">
@@ -50,7 +42,7 @@ export default function Nav() {
             </a>
           ))}
           <a className="nav__cta" href="#install">
-            Coba sekarang <span aria-hidden="true">→</span>
+            install
           </a>
         </nav>
 
@@ -62,18 +54,20 @@ export default function Nav() {
           aria-label={open ? 'Tutup menu' : 'Buka menu'}
           onClick={() => setOpen((value) => !value)}
         >
-          <span aria-hidden="true">{open ? '×' : '≡'}</span>
+          {open ? '[x]' : '[menu]'}
         </button>
       </div>
 
       <div id="nav-panel" className={`nav__panel ${open ? 'is-open' : ''}`}>
         {LINKS.map(([href, label]) => (
           <a key={href} href={href} onClick={() => setOpen(false)}>
+            <span aria-hidden="true">→ </span>
             {label}
           </a>
         ))}
         <a className="nav__panel-cta" href="#install" onClick={() => setOpen(false)}>
-          Coba sekarang →
+          <span aria-hidden="true">→ </span>
+          install
         </a>
       </div>
     </header>

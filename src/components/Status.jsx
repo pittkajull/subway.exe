@@ -1,62 +1,46 @@
-import Reveal from './Reveal.jsx'
 import SectionHead from './SectionHead.jsx'
-import { metroStops } from '../data/content.js'
+import TerminalFrame from './terminal/TerminalFrame.jsx'
+import { statusItems, statusNote } from '../data/content.js'
+
+const MARK = {
+  done: '[x]',
+  warn: '[!]',
+  todo: '[ ]',
+}
 
 export default function Status() {
   return (
-    <section className="sec sec--raise" id="status">
+    <section className="sec" id="status">
       <div className="wrap">
         <SectionHead
           index="04"
           kicker="status"
-          title={
-            <>
-              Dibangun <em>di depan mata.</em>
-            </>
-          }
-          lede="subway.exe masih di jalur awal. Nggak ada tanggal rilis palsu — ini posisi kerjanya sekarang."
+          title="built in the open."
+          lede="subway.exe is early. this is where it actually stands — no invented release dates, no fake progress."
         />
 
-        <div className="note">
-          <span className="note__tag">alpha</span>
-          <p>
-            Struktur dan endpoint inti udah ada, tapi belum pernah di-run dan
-            dites beneran. Kalau kamu coba sekarang, anggap aja ikut jadi orang
-            pertama yang nemu bug-nya.
+        <TerminalFrame
+          className="term--status"
+          title="subway.exe — status"
+          hint="alpha"
+        >
+          <p className="cmdline">
+            <span className="cmdline__prompt">guest@subway</span>
+            <span className="cmdline__dollar">$</span>
+            <span className="cmdline__text">subwayexe --status</span>
           </p>
-        </div>
 
-        <ol className="metro">
-          {metroStops.map((stop, index) => (
-            <Reveal
-              as="li"
-              key={stop.name}
-              delay={index * 70}
-              className={`metro__stop is-${stop.state}`}
-            >
-              <span className="metro__dot" aria-hidden="true" />
-              <span className="metro__name">
-                {stop.name}
-                {stop.state === 'current' && (
-                  <span className="metro__now">sedang di sini</span>
-                )}
-              </span>
-              <span className="metro__note">{stop.note}</span>
-            </Reveal>
-          ))}
-        </ol>
+          <ul className="status-list">
+            {statusItems.map((item) => (
+              <li className={`status-item is-${item.state}`} key={item.label}>
+                <span className="status-item__mark">{MARK[item.state]}</span>
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
 
-        <div className="metro__legend">
-          <span>
-            <i className="dot dot--done" aria-hidden="true" /> selesai
-          </span>
-          <span>
-            <i className="dot dot--current" aria-hidden="true" /> dikerjain
-          </span>
-          <span>
-            <i className="dot dot--next" aria-hidden="true" /> berikutnya
-          </span>
-        </div>
+          <p className="status-note">// {statusNote}</p>
+        </TerminalFrame>
       </div>
     </section>
   )

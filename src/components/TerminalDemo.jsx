@@ -41,10 +41,6 @@ export default function TerminalDemo() {
   useEffect(() => () => clearInterval(timer.current), [])
 
   function run(key) {
-    if (key === active && !typing) {
-      setTyped('')
-      setTyping(true)
-    }
     clearInterval(timer.current)
     setActive(key)
     const cmd = DEMO[key].cmd
@@ -74,7 +70,7 @@ export default function TerminalDemo() {
 
   return (
     <div className="demo">
-      <div className="demo__tabbar" role="group" aria-label="Contoh command">
+      <div className="demo__tabs" role="group" aria-label="Example commands">
         {ORDER.map((key) => (
           <button
             key={key}
@@ -83,9 +79,6 @@ export default function TerminalDemo() {
             aria-pressed={active === key}
             onClick={() => run(key)}
           >
-            <span className="chip__prompt" aria-hidden="true">
-              $
-            </span>
             {DEMO[key].cmd.replace('subwayexe ', '')}
           </button>
         ))}
@@ -98,23 +91,19 @@ export default function TerminalDemo() {
         bodyRef={bodyRef}
       >
         <p className="cmdline">
-          <span className="cmdline__prompt">~/subway</span>
+          <span className="cmdline__prompt">guest@subway</span>
           <span className="cmdline__dollar">$</span>
           <span className="cmdline__text">{typed}</span>
           {typing && <span className="cmdline__caret" aria-hidden="true" />}
         </p>
 
-        <div className="term__out" aria-live="polite" key={`${active}-${typing}`}>
-          {typing ? (
-            <p className="term__pending">menghubungi server…</p>
-          ) : (
-            DEMO[active].output
-          )}
+        <div className="term__out" aria-live="polite">
+          {typing ? <p className="term__pending">connecting…</p> : DEMO[active].output}
         </div>
       </TerminalFrame>
 
       <p className="demo__note">
-        Ini contoh output. Command-nya beneran, angkanya cuma ilustrasi.
+        // sample output. the commands are real; the numbers are illustrative.
       </p>
     </div>
   )

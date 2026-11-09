@@ -1,59 +1,69 @@
+import CopyButton from './CopyButton.jsx'
 import TerminalDemo from './TerminalDemo.jsx'
+import { installCommand, installNote } from '../data/content.js'
 
 export default function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="hero__glow" aria-hidden="true" />
       <div className="wrap hero__grid">
         <div className="hero__copy">
-          <img
-            className="hero__logo"
-            src="/logo.png"
-            alt=""
-            width="76"
-            height="68"
-          />
+          <div className="hero__brand">
+            <img className="hero__logo" src="/logo.png" alt="" width="42" height="38" />
+            <span className="hero__wordmark">
+              subway<span className="accent">.exe</span>
+            </span>
+            <span className="tag">alpha</span>
+          </div>
 
-          <p className="eyebrow">
-            <span className="pulse" aria-hidden="true" />
-            alpha build · v0.1.0
+          <p className="promptline">
+            <span className="promptline__user">guest@subway</span>
+            <span className="promptline__dim">:~$</span>
+            <span className="promptline__cmd">./subwayexe --about</span>
+            <span className="cursor cursor--inline" aria-hidden="true" />
           </p>
 
           <h1 className="hero__title">
-            Social media,
+            social media,
             <br />
-            but in your <em>terminal.</em>
+            but in your <span className="hl">terminal.</span>
           </h1>
 
           <p className="lede">
-            subway.exe itu sosial media tanpa aplikasi. Tanpa feed algoritma,
-            tanpa notifikasi nyasar, tanpa tombol yang nyari perhatian kamu.
-            Cuma terminal, dan orang-orang yang beneran kamu kenal.
+            subway.exe is social media without the app. a chronological feed,
+            24-hour stories, reposts, and chat — all through commands. no
+            algorithm, no notifications chasing you, no app to open.
           </p>
 
+          <div className="installbar">
+            <span className="installbar__dollar" aria-hidden="true">
+              $
+            </span>
+            <code className="installbar__cmd">{installCommand}</code>
+            <span className="tag tag--red">soon</span>
+            <CopyButton text={installCommand} label="copy" />
+          </div>
+          <p className="note-line">// {installNote}</p>
+
           <div className="hero__actions">
-            <a className="btn btn--primary" href="#install">
-              Mulai dari terminal <span className="btn__arrow" aria-hidden="true">→</span>
+            <a className="linkbtn" href="#features">
+              [ see features ]
             </a>
-            <a className="btn btn--ghost" href="#fitur">
-              Lihat fiturnya
+            <a className="linkbtn" href="#status">
+              [ build status ]
             </a>
           </div>
 
-          <dl className="hero__meta">
-            <div>
-              <dt>client</dt>
-              <dd>1 terminal</dd>
-            </div>
-            <div>
-              <dt>feed</dt>
-              <dd>kronologis</dd>
-            </div>
-            <div>
-              <dt>story</dt>
-              <dd>24 jam</dd>
-            </div>
-          </dl>
+          <p className="hero__meta">
+            <span>
+              client=<b>1 terminal</b>
+            </span>
+            <span>
+              feed=<b>chronological</b>
+            </span>
+            <span>
+              stories=<b>24h</b>
+            </span>
+          </p>
         </div>
 
         <div className="hero__demo">

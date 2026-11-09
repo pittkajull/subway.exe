@@ -1,60 +1,49 @@
 const NAV = [
-  ['#kenapa', 'Kenapa CLI'],
-  ['#fitur', 'Fitur'],
-  ['#commands', 'Commands'],
-  ['#status', 'Status'],
-  ['#install', 'Instalasi'],
+  ['#why', 'why'],
+  ['#features', 'features'],
+  ['#commands', 'commands'],
+  ['#status', 'status'],
+  ['#install', 'install'],
 ]
 
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="wrap">
-        <div className="footer__top">
-          <div>
-            <img
-              className="footer__logo"
-              src="/logo.png"
-              alt=""
-              width="58"
-              height="52"
-            />
-            <p className="footer__word">
-              subway<span>.exe</span>
-            </p>
-            <p className="footer__tag">
-              Social media, in your terminal. Dibikin buat orang yang lebih
-              betah di command line daripada di feed.
-            </p>
-          </div>
-
-          <div className="footer__col">
-            <h3>halaman</h3>
-            {NAV.map(([href, label]) => (
-              <a key={href} href={href}>
-                {label}
-              </a>
-            ))}
-          </div>
-
-          <div className="footer__col">
-            <h3>sumber</h3>
-            <a href="#install">Quickstart</a>
-            <a href="#commands">Referensi command</a>
-            <a href="#status">Build log</a>
-            <a href="#faq">FAQ</a>
-          </div>
-        </div>
-
-        <div className="footer__bottom">
-          <p>
-            © 2026 subway.exe <span className="footer__sep">·</span> alpha build
+      <div className="wrap footer__top">
+        <div className="footer__brand">
+          <img className="footer__logo" src="/logo.png" alt="" width="36" height="33" />
+          <p className="footer__word">
+            subway<span className="accent">.exe</span>
           </p>
-          <p className="footer__prompt">
-            <span aria-hidden="true">guest@subway:~$</span> buka terminal kamu
-            <span className="cursor" aria-hidden="true" />
+          <p className="footer__tag">
+            social media, in your terminal. for people who would rather live in
+            the command line than in a feed.
           </p>
         </div>
+
+        <nav className="footer__col" aria-label="Footer">
+          <h3>sitemap</h3>
+          {NAV.map(([href, label]) => (
+            <a key={href} href={href}>
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="footer__col">
+          <h3>status</h3>
+          <p className="footer__note">alpha build</p>
+          <p className="footer__note">npm package: not released</p>
+          <p className="footer__note">website: MIT license</p>
+        </div>
+      </div>
+
+      <div className="wrap footer__bottom">
+        <p>© 2026 subway.exe</p>
+        <p className="footer__prompt">
+          <span aria-hidden="true">guest@subway:~$</span> logout
+          <span className="cursor" aria-hidden="true" />
+        </p>
       </div>
     </footer>
   )

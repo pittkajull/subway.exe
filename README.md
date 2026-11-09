@@ -1,104 +1,101 @@
 # subway.exe — marketing site
 
-Landing page / company profile untuk **subway.exe**, sosial media berbasis CLI: feed kronologis, story 24 jam, repost, dan chat — semuanya dari terminal.
+Landing page for **subway.exe**, a terminal-based social network: chronological feed, 24-hour stories, reposts, and chat — all through commands.
 
-> Repo ini **hanya website marketing-nya** (React + Vite, statis tanpa backend). Aplikasi CLI, server, dan database-nya ada di repo produk terpisah.
+> This repo is the marketing website only (React + Vite, static, no backend). The CLI product is developed separately and is not public yet.
 
-## Software apa ini?
+## What is subway.exe?
 
-subway.exe adalah sosial media yang hidup di terminal. Nggak ada aplikasi native, nggak ada feed algoritma, nggak ada notifikasi yang nyari perhatian. Semua interaksi lewat command:
+subway.exe is social media without the app. No algorithmic feed, no notifications chasing you, no native client to install. You open a terminal and use commands:
 
 ```bash
-subwayexe register          # bikin akun
-subwayexe feed              # lihat post dari orang yang di-follow
-subwayexe post "halo"       # bikin post
-subwayexe story post "..."  # story, hilang dalam 24 jam
-subwayexe chat budi         # ngobrol langsung
-subwayexe repost <id>       # repost ke feed sendiri
+subwayexe register          # create an account
+subwayexe feed              # read posts from people you follow
+subwayexe post "hello"      # create a post
+subwayexe story post "..."  # a story that expires in 24 hours
+subwayexe chat budi         # open a conversation
+subwayexe repost <id>       # repost to your own feed
 ```
 
-Website ini memperkenalkan produk tersebut dengan tema terminal: headline serif editorial, body monospace, aksen phosphor, dan demo TUI interaktif.
+The product is in alpha. The structure and core endpoints exist, but it has never been run or tested end to end, and the npm package is not published. The site states this explicitly instead of advertising features that are not usable yet.
 
-## Isi website
+## What is in this site
 
-- Logo subway.exe di navbar, hero, footer, favicon, dan social preview.
-- Hero dengan demo terminal interaktif (`feed`, `story feed`, `profile`, `chat`).
-- Marquee command.
-- Enam alasan kenapa produknya CLI.
-- Mockup fitur feed, story, dan chat.
-- Referensi 15 command yang bisa difilter (shortcut `/`).
-- Build status yang jujur — produknya masih alpha dan belum diuji end-to-end.
-- Quickstart instalasi dengan tombol copy.
-- FAQ, plus layout responsif dan dukungan `prefers-reduced-motion`.
+- Terminal-native UI: monospace type, flat surfaces, hard rules, TUI frames, and the real logo.
+- Interactive terminal demo (`feed`, `story feed`, `profile`, `chat`) with typed commands.
+- Feature walkthroughs for feed, stories, and chat.
+- Searchable reference for all 14 known commands.
+- Honest build status: what exists, what has not been tested, what is missing.
+- Planned one-line install (`npm install -g subway.exe`) marked as **not released**.
+- FAQ, favicons for light/dark tabs, a 1200×630 social preview, responsive layout, and reduced-motion support.
 
-## Tech stack
+## Stack
 
 - React 19 + Vite 7
-- CSS custom (tanpa UI framework)
-- Font: Instrument Serif + IBM Plex Mono (Google Fonts)
+- Plain CSS with a small set of custom properties
+- JetBrains Mono (Google Fonts)
+- Brand assets in `public/`
 
-## Menjalankan
-
-Butuh Node.js dan npm.
+## Running locally
 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
 ```
 
-## Build & deploy
+## Build and deploy
 
 ```bash
-npm run build    # output statis di dist/
-npm run preview  # cek hasil build secara lokal
+npm run build    # static output in dist/
+npm run preview  # check the production build locally
 ```
 
-Karena hasilnya statis, `dist/` bisa di-deploy ke Netlify, Vercel, Cloudflare Pages, GitHub Pages, atau file server apa pun. Nggak ada environment variable yang dibutuhkan.
+`dist/` can be deployed to Netlify, Vercel, Cloudflare Pages, GitHub Pages, or any static file server. No environment variables are required.
 
-## Struktur
+## Structure
 
 ```text
 public/
-  logo.png                logo transparan (navbar, hero, footer)
-  favicon-dark.png        favicon transparan (tema gelap)
-  favicon-light.png       favicon transparan (tema terang)
-  apple-touch-icon.png    ikon iOS 180×180
-  og.png                  social preview 1200×630
+  logo.png                transparent logo (navbar, hero, footer)
+  favicon-dark.png        transparent favicon for dark tabs
+  favicon-light.png       transparent favicon for light tabs
+  apple-touch-icon.png    iOS icon
+  og.png                  1200×630 social preview
 src/
-  App.jsx                 urutan section
-  data/content.js         semua copy produk & data command
-  styles.css              design system + seluruh styling
+  App.jsx                 section order
+  data/content.js         all product copy and command data
+  styles.css              design system and layout
   components/
-    Nav.jsx  Hero.jsx  Marquee.jsx  Why.jsx  Features.jsx
+    Nav.jsx  Hero.jsx  Why.jsx  Features.jsx
     Commands.jsx  Status.jsx  Install.jsx  Faq.jsx  Footer.jsx
-    TerminalDemo.jsx      demo terminal interaktif
-    Reveal.jsx            animasi masuk saat scroll
-    SectionHead.jsx       header section yang dipakai berulang
+    TerminalDemo.jsx      interactive terminal demo
+    CopyButton.jsx        clipboard helper
+    SectionHead.jsx       shared section header
     terminal/
-      TerminalFrame.jsx   frame TUI (title bar + body)
-      Outputs.jsx         mock output feed, story, profil, chat
+      TerminalFrame.jsx   TUI window frame
+      Outputs.jsx         feed, story, profile, and chat output
 ```
 
-## Kustomisasi
+## Editing content
 
-- **Teks & data command**: `src/data/content.js`
-- **Warna, tipografi, spacing**: variabel CSS di bagian atas `src/styles.css`
-- **Aset brand**: ganti `public/logo.png`, lalu regenerate `public/favicon-dark.png`, `public/favicon-light.png`, `public/apple-touch-icon.png`, dan `public/og.png`
-- **Placeholder instalasi**: ganti `<repo-url>` di `src/data/content.js` setelah repo produk public
-- **Social preview**: setelah deploy, jadikan URL `og:image` absolut (misal `https://domain-kamu/og.png`) supaya kebaca semua platform
+- **Copy and commands:** `src/data/content.js`
+- **Colors, spacing, type:** CSS custom properties at the top of `src/styles.css`
+- **Brand assets:** replace `public/logo.png`, then regenerate the favicons and `public/og.png`
+- **Install and status:** these are intentionally marked as unreleased/incomplete. Update them when the package actually ships — do not add claims before that.
+- **Social preview:** after deploying, make `og:image` an absolute URL so every platform can read it.
 
-## Keamanan
+## Security
 
-Repo ini statis dan tidak menyimpan data pengguna, tapi tetap ada aturan yang dipegang:
+This repo is static and stores no user data, but the rules still apply:
 
-- Tidak ada API key, token, password, atau kredensial asli di source code.
-- Password yang muncul di contoh dokumentasi (`mypassword123`) cuma placeholder fiktif, bukan akun nyata.
-- `.gitignore` mengecualikan `node_modules/`, `dist/`, seluruh `.env*` (kecuali `.env.example`), file key (`*.pem`, `*.key`, `*.p12`), `.npmrc`, log, dan cache.
-- Jangan pernah commit `.env`, token, atau file kredensial. Kalau sebuah secret sempat ke-push, anggap sudah bocor: revoke/rotate dulu, baru bersihkan history.
-- Laporan celah keamanan: buka GitHub Security Advisory atau hubungi maintainer secara privat, jangan lewat issue publik.
+- No API keys, tokens, passwords, or real credentials are committed.
+- The password in the install preview (`••••••••`) is a placeholder, not a real account.
+- `.gitignore` excludes `node_modules/`, `dist/`, all `.env*` files (except `.env.example`), key files (`*.pem`, `*.key`, `*.p12`), `.npmrc`, logs, and caches.
+- Never commit `.env`, tokens, or credential files. If a secret is ever pushed, treat it as leaked: revoke/rotate it first, then clean the history.
+- Report security issues privately through GitHub Security Advisories rather than a public issue.
 
-## Lisensi
+## License
 
-Dirilis di bawah [MIT License](./LICENSE) — Copyright (c) 2026 Muhajir Amrullah.
+Released under the [MIT License](./LICENSE) — Copyright (c) 2026 Muhajir Amrullah.
 
-Lisensi ini berlaku untuk source code website di repo ini. Aplikasi CLI subway.exe di repo terpisah bisa punya lisensi sendiri.
+This license covers the website source in this repo. The CLI product in its separate repo may use a different license.

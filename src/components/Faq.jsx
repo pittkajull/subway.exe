@@ -3,17 +3,13 @@ import { faqs } from '../data/content.js'
 
 export default function Faq() {
   return (
-    <section className="sec sec--raise" id="faq">
+    <section className="sec" id="faq">
       <div className="wrap faq-wrap">
         <SectionHead
           index="06"
-          kicker="bantuan"
-          title={
-            <>
-              subway.exe <em>--help</em>
-            </>
-          }
-          lede="Pertanyaan yang paling sering muncul sebelum orang coba jalanin."
+          kicker="help"
+          title="subway.exe --help"
+          lede="the questions people ask before they try it."
         />
 
         <div className="faq">
@@ -22,7 +18,7 @@ export default function Faq() {
               <summary>
                 <span className="faq__q">{item.q}</span>
                 <span className="faq__icon" aria-hidden="true">
-                  +
+                  [+]
                 </span>
               </summary>
               <p className="faq__a">{item.a}</p>
