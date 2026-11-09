@@ -84,6 +84,7 @@ export default defineConfig(({ mode }) => {
   const siteUrl = normalizeSiteUrl(process.env.VITE_SITE_URL || env.VITE_SITE_URL)
 
   return {
+    base: process.env.VITE_BASE_PATH || '/',
     plugins: [react(), seoPlugin(siteUrl)],
   }
 })

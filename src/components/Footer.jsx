@@ -11,7 +11,13 @@ export default function Footer() {
     <footer className="footer">
       <div className="wrap footer__top">
         <div className="footer__brand">
-          <img className="footer__logo" src="/logo.png" alt="" width="36" height="33" />
+          <img
+            className="footer__logo"
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            alt=""
+            width="36"
+            height="33"
+          />
           <p className="footer__word">
             subway<span className="accent">.exe</span>
           </p>

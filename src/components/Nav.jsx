@@ -30,7 +30,13 @@ export default function Nav() {
     <header className={`nav ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="wrap nav__inner">
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
-          <img className="brand__logo" src="/logo.png" alt="" width="24" height="22" />
+          <img
+            className="brand__logo"
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            alt=""
+            width="24"
+            height="22"
+          />
           <span className="brand__name">subway.exe</span>
           <span className="brand__tag">/ pre-release</span>
         </a>

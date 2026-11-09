@@ -8,7 +8,13 @@ export default function Hero() {
       <div className="wrap hero__grid">
         <div className="hero__copy">
           <div className="hero__brand">
-            <img className="hero__logo" src="/logo.png" alt="" width="42" height="38" />
+            <img
+              className="hero__logo"
+              src={`${import.meta.env.BASE_URL}logo.png`}
+              alt=""
+              width="42"
+              height="38"
+            />
             <span className="hero__wordmark">
               subway<span className="accent">.exe</span>
             </span>

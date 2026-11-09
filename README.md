@@ -69,6 +69,14 @@ npm run preview
 
 `dist/` is a static site and can be served by any static host. Set `VITE_SITE_URL` to the deployed origin before building so canonical URLs, absolute social images, `sitemap.xml`, and the sitemap entry in `robots.txt` use the real domain. Without it, those URL-dependent tags are skipped rather than pointing at a placeholder.
 
+### GitHub Pages
+
+The workflow in `.github/workflows/deploy.yml` builds with `VITE_BASE_PATH=/subway.exe/` and `VITE_SITE_URL=https://pittkajull.github.io/subway.exe`, then publishes `dist/` on every push to `main`.
+
+In the repository, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions** once. The site is served at `https://pittkajull.github.io/subway.exe/`.
+
+If you move to a custom domain at the root, remove `VITE_BASE_PATH` from the workflow and set `VITE_SITE_URL` to that domain.
+
 All public copy, command data, and roadmap content live in `src/data/content.js`. Keep install and status marked unreleased until the npm package actually ships.
 
 ## Contributing
