@@ -12,7 +12,7 @@ export default function Hero() {
             <span className="hero__wordmark">
               subway<span className="accent">.exe</span>
             </span>
-            <span className="tag">alpha</span>
+            <span className="tag">pre-release</span>
           </div>
 
           <p className="promptline">
@@ -29,9 +29,9 @@ export default function Hero() {
           </h1>
 
           <p className="lede">
-            subway.exe is social media without the app. a chronological feed,
-            24-hour stories, reposts, and chat — all through commands. no
-            algorithm, no notifications chasing you, no app to open.
+            subway.exe is a real social network that lives in your terminal. a
+            chronological feed, likes, comments, follows, and live 1:1 chat —
+            installed globally with npm, no app required.
           </p>
 
           <div className="installbar">
@@ -61,7 +61,7 @@ export default function Hero() {
               feed=<b>chronological</b>
             </span>
             <span>
-              stories=<b>24h</b>
+              chat=<b>realtime</b>
             </span>
           </p>
         </div>

@@ -1,33 +1,37 @@
 # subway.exe — marketing site
 
-Landing page for **subway.exe**, a terminal-based social network: chronological feed, 24-hour stories, reposts, and chat — all through commands.
+Landing page for **subway.exe**, a real social network that lives in the terminal. Users install a global CLI with npm; posts, follows, and messages live on the server, so the account is the same from any machine.
 
-> This repo is the marketing website only (React + Vite, static, no backend). The CLI product is developed separately and is not public yet.
+> This repo is the marketing website only (React + Vite, static, no backend). The CLI and server are developed separately and are not public yet.
 
-## What is subway.exe?
+## Product scope
 
-subway.exe is social media without the app. No algorithmic feed, no notifications chasing you, no native client to install. You open a terminal and use commands:
+**MVP (current focus):** register, login, logout, `whoami`, text posts, a live chronological feed, likes, comments, follow/unfollow, profiles, and realtime 1:1 chat.
 
-```bash
-subwayexe register          # create an account
-subwayexe feed              # read posts from people you follow
-subwayexe post "hello"      # create a post
-subwayexe story post "..."  # a story that expires in 24 hours
-subwayexe chat budi         # open a conversation
-subwayexe repost <id>       # repost to your own feed
-```
+**Phase 2 (next, not built yet):** profile management, public/private accounts with a global feed, an interactive menu, edit/delete, reposts, and 24-hour stories.
 
-The product is in alpha. The structure and core endpoints exist, but it has never been run or tested end to end, and the npm package is not published. The site states this explicitly instead of advertising features that are not usable yet.
+**Later:** photo posts converted to ASCII art.
+
+The product is not released. The npm package is not published, and the public server is not available. The site describes this explicitly instead of advertising features that cannot be used yet.
 
 ## What is in this site
 
 - Terminal-native UI: monospace type, flat surfaces, hard rules, TUI frames, and the real logo.
-- Interactive terminal demo (`feed`, `story feed`, `profile`, `chat`) with typed commands.
-- Feature walkthroughs for feed, stories, and chat.
-- Searchable reference for all 14 known commands.
-- Honest build status: what exists, what has not been tested, what is missing.
-- Planned one-line install (`npm install -g subway.exe`) marked as **not released**.
-- FAQ, favicons for light/dark tabs, a 1200×630 social preview, responsive layout, and reduced-motion support.
+- Interactive terminal demo (`feed`, `profile`, `chat`) with typed commands.
+- Feature walkthroughs for the MVP feed, chat, and profiles.
+- Searchable command reference for all 19 known commands, tagged `mvp` or `next`.
+- Honest roadmap: MVP scope, missing release work, and the phase 2 sequence.
+- Planned install (`npm install -g subwayexe`) marked as **not released**.
+- FAQ, light/dark favicons, a 1200×630 social preview, responsive layout, and reduced-motion support.
+
+## Public copy policy
+
+The site is written from the product spec but deliberately keeps internals out of the public page:
+
+- **Published:** product behavior, MVP scope, phase 2 roadmap, command names/flags, install command, and release status.
+- **Not published:** authentication and token internals, REST/WebSocket contracts, database schema and ORM details, visibility query logic, repository layout, hosting/VPS plans, and open security questions (rate limiting, password reset, and similar).
+
+No unconfirmed claim is added to fill a gap. If a fact is not settled, the page leaves it out and says so.
 
 ## Stack
 
@@ -63,7 +67,7 @@ public/
   og.png                  1200×630 social preview
 src/
   App.jsx                 section order
-  data/content.js         all product copy and command data
+  data/content.js         all public copy, commands, and roadmap data
   styles.css              design system and layout
   components/
     Nav.jsx  Hero.jsx  Why.jsx  Features.jsx
@@ -73,23 +77,24 @@ src/
     SectionHead.jsx       shared section header
     terminal/
       TerminalFrame.jsx   TUI window frame
-      Outputs.jsx         feed, story, profile, and chat output
+      Outputs.jsx         feed, profile, and chat output
 ```
 
 ## Editing content
 
-- **Copy and commands:** `src/data/content.js`
+- **Copy, commands, roadmap:** `src/data/content.js`
 - **Colors, spacing, type:** CSS custom properties at the top of `src/styles.css`
 - **Brand assets:** replace `public/logo.png`, then regenerate the favicons and `public/og.png`
-- **Install and status:** these are intentionally marked as unreleased/incomplete. Update them when the package actually ships — do not add claims before that.
-- **Social preview:** after deploying, make `og:image` an absolute URL so every platform can read it.
+- **Install and status:** keep them marked unreleased/incomplete until the npm package actually ships
+- **Command tags:** `phase: 'mvp'` or `phase: 'next'` controls the label and the counts on the page
+- **Social preview:** after deploying, make `og:image` an absolute URL so every platform can read it
 
 ## Security
 
 This repo is static and stores no user data, but the rules still apply:
 
 - No API keys, tokens, passwords, or real credentials are committed.
-- The password in the install preview (`••••••••`) is a placeholder, not a real account.
+- Passwords in the install preview are placeholders, not real accounts.
 - `.gitignore` excludes `node_modules/`, `dist/`, all `.env*` files (except `.env.example`), key files (`*.pem`, `*.key`, `*.p12`), `.npmrc`, logs, and caches.
 - Never commit `.env`, tokens, or credential files. If a secret is ever pushed, treat it as leaked: revoke/rotate it first, then clean the history.
 - Report security issues privately through GitHub Security Advisories rather than a public issue.
@@ -98,4 +103,4 @@ This repo is static and stores no user data, but the rules still apply:
 
 Released under the [MIT License](./LICENSE) — Copyright (c) 2026 Muhajir Amrullah.
 
-This license covers the website source in this repo. The CLI product in its separate repo may use a different license.
+This license covers the website source in this repo. The CLI and server may use a different license.

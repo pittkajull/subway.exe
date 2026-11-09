@@ -32,7 +32,7 @@ export default function Nav() {
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
           <img className="brand__logo" src="/logo.png" alt="" width="24" height="22" />
           <span className="brand__name">subway.exe</span>
-          <span className="brand__tag">/ alpha</span>
+          <span className="brand__tag">/ pre-release</span>
         </a>
 
         <nav className="nav__links" aria-label="Navigasi utama">

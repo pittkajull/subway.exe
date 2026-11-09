@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import TerminalFrame from './terminal/TerminalFrame.jsx'
-import { ChatOutput, FeedOutput, ProfileOutput, StoriesOutput } from './terminal/Outputs.jsx'
+import { ChatOutput, FeedOutput, ProfileOutput } from './terminal/Outputs.jsx'
 
 const DEMO = {
   feed: {
@@ -8,12 +8,6 @@ const DEMO = {
     title: 'subway.exe — feed (4)',
     hint: '↑/↓ navigate · q quit',
     output: <FeedOutput />,
-  },
-  story: {
-    cmd: 'subwayexe story feed',
-    title: 'subway.exe — stories',
-    hint: '↑/↓ navigate · q quit',
-    output: <StoriesOutput />,
   },
   profile: {
     cmd: 'subwayexe profile budi',
@@ -29,7 +23,7 @@ const DEMO = {
   },
 }
 
-const ORDER = ['feed', 'story', 'profile', 'chat']
+const ORDER = ['feed', 'profile', 'chat']
 
 export default function TerminalDemo() {
   const [active, setActive] = useState('feed')

@@ -3,6 +3,10 @@ import SectionHead from './SectionHead.jsx'
 import { commandGroups } from '../data/content.js'
 
 const TOTAL = commandGroups.reduce((sum, group) => sum + group.items.length, 0)
+const MVP_COUNT = commandGroups.reduce(
+  (sum, group) => sum + group.items.filter((item) => item.phase === 'mvp').length,
+  0,
+)
 
 export default function Commands() {
   const [query, setQuery] = useState('')
@@ -28,7 +32,9 @@ export default function Commands() {
       .map((group) => ({
         ...group,
         items: group.items.filter((item) =>
-          `${item.name} ${item.args} ${item.desc}`.toLowerCase().includes(q),
+          `${item.name} ${item.args} ${item.phase} ${item.desc}`
+            .toLowerCase()
+            .includes(q),
         ),
       }))
       .filter((group) => group.items.length > 0)
@@ -43,7 +49,7 @@ export default function Commands() {
           index="03"
           kicker="commands"
           title="everything you can type."
-          lede="no menus, no hidden gestures. this is the whole list — the rest is just your keyboard."
+          lede="no menus, no hidden gestures. the whole list, labeled by what ships first and what comes after the mvp."
         />
 
         <div className="cmd-search">
@@ -67,7 +73,9 @@ export default function Commands() {
         </div>
 
         <p className="cmd-count">
-          {query.trim() ? `${count} of ${TOTAL} commands match` : `${TOTAL} commands · 5 groups`}
+          {query.trim()
+            ? `${count} of ${TOTAL} commands match`
+            : `${TOTAL} commands · ${MVP_COUNT} in the mvp · ${TOTAL - MVP_COUNT} next`}
         </p>
 
         <div className="cmd-table">
@@ -89,6 +97,9 @@ export default function Commands() {
                     {item.name}
                     {item.args && <span className="cmd-row__arg"> {item.args}</span>}
                   </code>
+                  <span className={`cmd-phase cmd-phase--${item.phase}`}>
+                    [{item.phase}]
+                  </span>
                   <span className="cmd-leader" aria-hidden="true" />
                   <p className="cmd-row__desc">{item.desc}</p>
                 </div>
@@ -98,7 +109,8 @@ export default function Commands() {
         </div>
 
         <p className="cmd-footnote">
-          // every interactive command uses a prompt. no long flags to memorize.
+          // mvp commands ship first. next commands are phase 2, built after the
+          mvp is tested.
         </p>
       </div>
     </section>

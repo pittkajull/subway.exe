@@ -1,35 +1,36 @@
-// All copy lives here. Anything not confirmed stays out.
+// Public copy only. Internal architecture, auth details, API contracts,
+// database schema, and deployment plans stay out of this file.
 
 export const principles = [
   {
     num: '01',
     title: 'chronological, full stop.',
-    body: 'your feed is only posts from people you follow, newest first. no discover, no recommended content, nobody else deciding what you see.',
+    body: 'the feed is sorted by time, newest first. no engagement ranking, no recommended-content machine deciding what you see.',
     cmd: '$ subwayexe feed',
   },
   {
     num: '02',
-    title: 'stories that actually expire.',
-    body: 'one line, live for a day, then gone. no permanent archive to stalk next month. when it is over, it is over.',
-    cmd: '$ subwayexe story post "coffee first"',
+    title: 'one command, one action.',
+    body: 'post, like, comment, follow, message — one line each. direct commands stay available even when the interactive menu arrives.',
+    cmd: '$ subwayexe like <postId>',
   },
   {
     num: '03',
-    title: 'one command, one action.',
-    body: 'post, edit, delete, repost — all one line. no menus, no buttons hidden behind a three-dot icon.',
-    cmd: '$ subwayexe repost e5f6g7h8',
-  },
-  {
-    num: '04',
     title: 'keyboard only.',
-    body: '↑/↓ to navigate, q to quit, Enter to send a message. your hands never leave the home row.',
+    body: '↑/↓ to navigate, q to quit, Enter to send. your hands never leave the home row.',
     cmd: '↑/↓ · q · Enter · Esc',
   },
   {
-    num: '05',
+    num: '04',
     title: 'no notifications.',
-    body: 'subway.exe does not chase you. you open it when you want to, then you close it. done. nothing waiting for you outside.',
+    body: 'subway.exe does not chase you. you open it when you want to, then you close it. nothing waiting for you outside the terminal.',
     cmd: '$ subwayexe feed',
+  },
+  {
+    num: '05',
+    title: 'a real network.',
+    body: 'posts, follows, and messages live on the server. the terminal is the client — not a local-only toy. your account works from any machine.',
+    cmd: '// server is the source of truth',
   },
 ]
 
@@ -38,93 +39,104 @@ export const features = [
     id: 'feed',
     label: '01',
     name: 'feed',
-    title: 'time order. not algorithm order.',
-    body: 'the newest posts from people you follow, on top. reposts are marked, edited posts are labeled, and every post has a short id you can use to edit or delete it.',
+    title: 'newest first, always.',
+    body: 'the mvp feed shows posts from people you follow and updates live while you read. likes and comments happen from the same terminal, without opening another app. public discovery and a global feed are the next step.',
     points: [
-      'the ↻ reposted by line sits above the original post.',
-      'the (edited) label only appears if a post was edited after 24 hours.',
-      '↑/↓ to navigate, q to quit.',
-    ],
-  },
-  {
-    id: 'story',
-    label: '02',
-    name: 'story',
-    title: 'alive for 24 hours, then gone.',
-    body: 'stories have their own feed, separate from regular posts. every row shows how much time is left, so you know what is about to expire.',
-    points: [
-      'a story disappears automatically after 24 hours.',
-      'time left is counted per story, not per day.',
-      'your own story is tagged "(you)".',
+      'like or unlike with subwayexe like <postId>.',
+      'reply with subwayexe comment <postId> "<text>".',
+      'follow or unfollow with subwayexe follow <username>.',
     ],
   },
   {
     id: 'chat',
-    label: '03',
+    label: '02',
     name: 'chat',
-    title: 'talk without switching windows.',
-    body: 'chat lives in the same terminal. no new tab, no second app. open a conversation, talk, hit Esc, and you are back in the feed.',
+    title: 'real conversations, in real time.',
+    body: '1:1 messages delivered in the same terminal session. history loads when you open a chat, and new messages arrive live.',
     points: [
-      'Enter to send, Esc to leave.',
-      'conversations render as a clean transcript.',
       'open one with subwayexe chat <username>.',
+      'Enter to send, Esc to leave.',
+      'messages are stored server-side, not on your machine.',
+    ],
+  },
+  {
+    id: 'profile',
+    label: '03',
+    name: 'profile',
+    title: 'an identity, not a profile page.',
+    body: 'see anyone’s bio, post count, followers, and following without leaving the terminal. small on purpose — no personal branding dashboard.',
+    points: [
+      'view with subwayexe profile <username>.',
+      'counts update as the network grows.',
+      'editing comes in phase 2.',
     ],
   },
 ]
 
 export const commandGroups = [
   {
-    name: 'auth',
+    name: 'account',
     items: [
-      { name: 'register', args: '', desc: 'create an account and sign in immediately.' },
-      { name: 'login', args: '', desc: 'sign in to an existing account.' },
+      { name: 'register', args: '', phase: 'mvp', desc: 'create an account and sign in.' },
+      { name: 'login', args: '', phase: 'mvp', desc: 'sign in to an existing account.' },
+      { name: 'logout', args: '', phase: 'mvp', desc: 'clear the local session.' },
+      { name: 'whoami', args: '', phase: 'mvp', desc: 'show who you are logged in as.' },
     ],
   },
   {
     name: 'posting',
     items: [
-      { name: 'feed', args: '', desc: 'see posts from people you follow.' },
-      { name: 'post', args: '<text>', desc: 'create a new post.' },
-      { name: 'edit', args: '<id> <text>', desc: 'edit your post. the "edited" label appears only after 24 hours.' },
-      { name: 'delete', args: '<id>', desc: 'delete a post, with a y/N confirmation.' },
-      { name: 'repost', args: '<id>', desc: 'bring someone else\'s post into your feed.' },
+      { name: 'post', args: '<text>', phase: 'mvp', desc: 'create a text post.' },
+      { name: 'feed', args: '', phase: 'mvp', desc: 'open the live, chronological feed.' },
+      { name: 'like', args: '<postId>', phase: 'mvp', desc: 'like or unlike a post.' },
+      { name: 'comment', args: '<postId> "<text>"', phase: 'mvp', desc: 'reply to a post.' },
+      { name: 'edit', args: '<postId> "<text>"', phase: 'next', desc: 'edit your own post. (edited) appears after 24 hours.' },
+      { name: 'delete', args: '<postId>', phase: 'next', desc: 'hard-delete your own post, with confirmation.' },
+      { name: 'repost', args: '<postId>', phase: 'next', desc: 'share someone else’s post with attribution.' },
     ],
   },
   {
     name: 'story',
     items: [
-      { name: 'story post', args: '<text>', desc: 'a story that disappears in 24 hours.' },
-      { name: 'story feed', args: '', desc: 'see active stories and their remaining time.' },
+      { name: 'story post', args: '"<text>"', phase: 'next', desc: 'post a story that expires in 24 hours.' },
+      { name: 'story feed', args: '', phase: 'next', desc: 'see active stories, separate from the feed.' },
     ],
   },
   {
     name: 'social',
     items: [
-      { name: 'follow', args: '<username>', desc: 'follow someone and fill your feed.' },
-      { name: 'chat', args: '<username>', desc: 'open a chat. Enter to send, Esc to leave.' },
+      { name: 'follow', args: '<username>', phase: 'mvp', desc: 'follow or unfollow a user.' },
+      { name: 'chat', args: '<username>', phase: 'mvp', desc: 'open a realtime 1:1 conversation.' },
     ],
   },
   {
     name: 'profile',
     items: [
-      { name: 'profile', args: '<username>', desc: 'see bio, posts, followers, following, and join date.' },
-      { name: 'profile edit', args: '', desc: 'change your username and bio through a prompt.' },
-      { name: 'profile password', args: '', desc: 'change your password. input stays hidden.' },
+      { name: 'profile', args: '<username>', phase: 'mvp', desc: 'see bio, posts, followers, and following.' },
+      { name: 'profile edit', args: '', phase: 'next', desc: 'change username, bio, and account visibility.' },
+      { name: 'profile password', args: '', phase: 'next', desc: 'change your password after verifying the current one.' },
+    ],
+  },
+  {
+    name: 'shell',
+    items: [
+      { name: 'subwayexe', args: '', phase: 'next', desc: 'launch the interactive menu. no arguments.' },
     ],
   },
 ]
 
 export const statusItems = [
-  { state: 'done', label: 'monorepo structure & API contracts' },
-  { state: 'done', label: 'core endpoints: auth · feed · post · story · chat' },
-  { state: 'warn', label: 'never run or tested end to end' },
-  { state: 'todo', label: 'npm package & subwayexe binary' },
+  { state: 'warn', label: 'mvp: auth · posts · feed · likes · comments · follow · chat' },
+  { state: 'todo', label: 'npm package & public release' },
+  { state: 'todo', label: 'phase 2: profiles · edit/delete/repost · stories · menu' },
+  { state: 'todo', label: 'public/private accounts + global feed' },
+  { state: 'todo', label: 'later: photo posts as ascii' },
 ]
 
 export const statusNote =
-  'early skeleton — the structure and core endpoints exist, but the app has never been run or tested for real. do not treat it as stable.'
+  'the mvp is being built and tested. nothing is published yet — the npm package and the public server are not available.'
 
-export const installCommand = 'npm install -g subway.exe'
+export const installCommand = 'npm install -g subwayexe'
 
 export const installNote =
   'the npm package is not released yet. this is the planned command, not something you can run today.'
@@ -133,7 +145,7 @@ export const installSteps = [
   {
     num: '01',
     title: 'install',
-    body: 'one npm command, and subwayexe becomes a binary in your terminal.',
+    body: 'one npm command adds the subwayexe binary to your terminal.',
   },
   {
     num: '02',
@@ -143,12 +155,12 @@ export const installSteps = [
   {
     num: '03',
     title: 'feed',
-    body: 'the timeline opens right away. follow people, post, start talking.',
+    body: 'the timeline opens. follow people, like and reply, start a conversation.',
   },
 ]
 
 export const installPreview = [
-  ['p', '$ npm install -g subway.exe'],
+  ['p', '$ npm install -g subwayexe'],
   ['o', '$ subwayexe register'],
   ['d', '? username › kjul'],
   ['d', '? password › ••••••••'],
@@ -158,22 +170,26 @@ export const installPreview = [
 export const faqs = [
   {
     q: 'can i use it yet?',
-    a: 'no. the structure and core endpoints exist, but the app has never been run or tested end to end. the npm package is not published either. treat it as alpha.',
+    a: 'not yet. the mvp is being built and tested, and the npm package is not published. everything on this page describes the intended experience.',
   },
   {
     q: 'how do i install it?',
-    a: 'the plan is one line: npm install -g subway.exe. the package is not on npm yet, so there is nothing to install today.',
+    a: 'once it ships, one line: npm install -g subwayexe. the package is not on npm yet, so there is nothing to install today.',
   },
   {
-    q: 'what do i need to run it?',
-    a: 'npm, eventually. the exact versions and requirements are not final, so they are not listed here yet rather than guessing.',
+    q: 'what is in the mvp?',
+    a: 'account creation and login, text posts, a live chronological feed, likes, comments, follows, profiles, and realtime 1:1 chat. stories, reposts, editing, and the interactive menu come in phase 2.',
+  },
+  {
+    q: 'is this a local app?',
+    a: 'no. it is a real network: posts, follows, and messages live on the server, so your account is the same from any machine with the cli installed.',
   },
   {
     q: 'why the terminal?',
-    a: 'because social media does not have to be a place you scroll through on autopilot. the terminal is where you already work — subway.exe meets you there instead of pulling you somewhere else.',
+    a: 'because social media doesn’t have to be a place you scroll through on autopilot. the terminal is where you already work — subway.exe meets you there instead of pulling you into another app.',
   },
   {
     q: 'when does it ship?',
-    a: 'no date yet. progress lives in the status section on this page, and it will be updated when there is something you can actually use.',
+    a: 'the mvp comes first; there is no date yet. phase 2 begins after the mvp is tested, starting with profiles, public/private accounts, and a global feed.',
   },
 ]

@@ -15,14 +15,14 @@ export default function Status() {
         <SectionHead
           index="04"
           kicker="status"
-          title="built in the open."
-          lede="subway.exe is early. this is where it actually stands — no invented release dates, no fake progress."
+          title="what ships, what's next."
+          lede="the mvp comes first. everything after it is sequenced, not promised — no invented release dates."
         />
 
         <TerminalFrame
           className="term--status"
-          title="subway.exe — status"
-          hint="alpha"
+          title="subway.exe — roadmap"
+          hint="mvp first"
         >
           <p className="cmdline">
             <span className="cmdline__prompt">guest@subway</span>

@@ -32,7 +32,7 @@ export default function Footer() {
 
         <div className="footer__col">
           <h3>status</h3>
-          <p className="footer__note">alpha build</p>
+          <p className="footer__note">mvp in development</p>
           <p className="footer__note">npm package: not released</p>
           <p className="footer__note">website: MIT license</p>
         </div>

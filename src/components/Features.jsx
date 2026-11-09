@@ -1,28 +1,40 @@
 import SectionHead from './SectionHead.jsx'
 import TerminalFrame from './terminal/TerminalFrame.jsx'
-import { ChatOutput, FeedMock, StoriesOutput } from './terminal/Outputs.jsx'
+import { ChatOutput, FeedMock, ProfileOutput } from './terminal/Outputs.jsx'
 import { features } from '../data/content.js'
 
 function Mock({ id }) {
   if (id === 'feed') {
     return (
-      <TerminalFrame className="term--mock" title="subway.exe — feed (3)" hint="↑/↓ navigate · q quit">
+      <TerminalFrame
+        className="term--mock"
+        title="subway.exe — feed (3)"
+        hint="↑/↓ navigate · q quit"
+      >
         <FeedMock />
       </TerminalFrame>
     )
   }
 
-  if (id === 'story') {
+  if (id === 'chat') {
     return (
-      <TerminalFrame className="term--mock" title="subway.exe — stories" hint="↑/↓ navigate · q quit">
-        <StoriesOutput simple />
+      <TerminalFrame
+        className="term--mock term--mock--chat"
+        title="subway.exe — chat with @budi"
+        hint="Enter send · Esc"
+      >
+        <ChatOutput />
       </TerminalFrame>
     )
   }
 
   return (
-    <TerminalFrame className="term--mock" title="subway.exe — chat with @budi" hint="Enter send · Esc">
-      <ChatOutput />
+    <TerminalFrame
+      className="term--mock term--mock--profile"
+      title="subway.exe — profile @budi"
+      hint="q quit"
+    >
+      <ProfileOutput />
     </TerminalFrame>
   )
 }
@@ -34,8 +46,8 @@ export default function Features() {
         <SectionHead
           index="02"
           kicker="features"
-          title="what you need. nothing more."
-          lede="three core things, built properly. no features that exist just to make the list look complete."
+          title="the mvp, first."
+          lede="reading, posting, reacting, following, and talking. editing, stories, reposts, and the interactive menu come after the basics are tested."
         />
 
         <div className="features">

@@ -15,8 +15,8 @@ export default function Install() {
         <SectionHead
           index="05"
           kicker="install"
-          title="one line, eventually."
-          lede="the install flow is still being built: one npm command, then you are in. it is not published yet."
+          title="one line, when it ships."
+          lede="the plan is one global npm command, then the terminal takes over. it is not on npm yet."
         />
 
         <div className="install-grid">
