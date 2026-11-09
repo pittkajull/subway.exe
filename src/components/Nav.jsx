@@ -35,7 +35,7 @@ export default function Nav() {
           <span className="brand__tag">/ pre-release</span>
         </a>
 
-        <nav className="nav__links" aria-label="Navigasi utama">
+        <nav className="nav__links" aria-label="Main">
           {LINKS.map(([href, label]) => (
             <a key={href} href={href}>
               {label}
@@ -51,7 +51,7 @@ export default function Nav() {
           className="nav__toggle"
           aria-expanded={open}
           aria-controls="nav-panel"
-          aria-label={open ? 'Tutup menu' : 'Buka menu'}
+          aria-label={open ? 'Close menu' : 'Open menu'}
           onClick={() => setOpen((value) => !value)}
         >
           {open ? '[x]' : '[menu]'}

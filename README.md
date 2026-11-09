@@ -48,6 +48,7 @@ This command does not work today. The site marks the install and release status 
 - A searchable reference for all 19 known commands, tagged `mvp` or `next`.
 - An honest roadmap: MVP scope, missing release work, and the phase 2 sequence.
 - The planned install command, clearly marked **not released**.
+- Canonical metadata, Open Graph and Twitter cards, structured data, a sitemap, and robots rules.
 - FAQ, responsive layout, light/dark favicons, a social preview, and reduced-motion support.
 
 ## Development
@@ -66,7 +67,7 @@ npm run build    # static output in dist/
 npm run preview
 ```
 
-`dist/` is a static site and can be served by any static host. No environment variables are required.
+`dist/` is a static site and can be served by any static host. Set `VITE_SITE_URL` to the deployed origin before building so canonical URLs, absolute social images, `sitemap.xml`, and the sitemap entry in `robots.txt` use the real domain. Without it, those URL-dependent tags are skipped rather than pointing at a placeholder.
 
 All public copy, command data, and roadmap content live in `src/data/content.js`. Keep install and status marked unreleased until the npm package actually ships.
 
