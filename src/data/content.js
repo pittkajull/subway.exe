@@ -128,7 +128,7 @@ export const commandGroups = [
 export const statusItems = [
   { state: 'warn', label: 'mvp: auth · posts · feed · likes · comments · follow · chat' },
   { state: 'todo', label: 'npm package & public release' },
-  { state: 'todo', label: 'phase 2: profiles · edit/delete/repost · stories · menu' },
+  { state: 'todo', label: 'phase 2: profile editing · edit/delete/repost · stories · menu' },
   { state: 'todo', label: 'public/private accounts + global feed' },
   { state: 'todo', label: 'later: photo posts as ascii' },
 ]
