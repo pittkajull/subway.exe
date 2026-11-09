@@ -59,7 +59,7 @@ Karena hasilnya statis, `dist/` bisa di-deploy ke Netlify, Vercel, Cloudflare Pa
 
 ```text
 public/
-  logo-mark.png           logo transparan (navbar, hero, footer)
+  logo.png                logo transparan (navbar, hero, footer)
   favicon.png             ikon 192×192
   og.png                  social preview 1200×630
 src/
@@ -81,7 +81,7 @@ src/
 
 - **Teks & data command**: `src/data/content.js`
 - **Warna, tipografi, spacing**: variabel CSS di bagian atas `src/styles.css`
-- **Aset brand**: ganti `public/logo-mark.png`, `public/favicon.png`, dan `public/og.png`
+- **Aset brand**: ganti `public/logo.png`, lalu regenerate `public/favicon.png` dan `public/og.png`
 - **Placeholder instalasi**: ganti `<repo-url>` di `src/data/content.js` setelah repo produk public
 - **Social preview**: setelah deploy, jadikan URL `og:image` absolut (misal `https://domain-kamu/og.png`) supaya kebaca semua platform
 

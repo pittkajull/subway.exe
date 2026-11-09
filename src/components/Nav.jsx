@@ -33,7 +33,7 @@ export default function Nav() {
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
           <img
             className="brand__logo"
-            src="/logo-mark.png"
+            src="/logo.png"
             alt=""
             width="30"
             height="27"

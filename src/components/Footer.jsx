@@ -14,7 +14,7 @@ export default function Footer() {
           <div>
             <img
               className="footer__logo"
-              src="/logo-mark.png"
+              src="/logo.png"
               alt=""
               width="58"
               height="52"

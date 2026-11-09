@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="hero__copy">
           <img
             className="hero__logo"
-            src="/logo-mark.png"
+            src="/logo.png"
             alt=""
             width="76"
             height="68"
