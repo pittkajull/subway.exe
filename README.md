@@ -60,7 +60,9 @@ Karena hasilnya statis, `dist/` bisa di-deploy ke Netlify, Vercel, Cloudflare Pa
 ```text
 public/
   logo.png                logo transparan (navbar, hero, footer)
-  favicon.png             ikon 192×192
+  favicon-dark.png        favicon transparan (tema gelap)
+  favicon-light.png       favicon transparan (tema terang)
+  apple-touch-icon.png    ikon iOS 180×180
   og.png                  social preview 1200×630
 src/
   App.jsx                 urutan section
@@ -81,7 +83,7 @@ src/
 
 - **Teks & data command**: `src/data/content.js`
 - **Warna, tipografi, spacing**: variabel CSS di bagian atas `src/styles.css`
-- **Aset brand**: ganti `public/logo.png`, lalu regenerate `public/favicon.png` dan `public/og.png`
+- **Aset brand**: ganti `public/logo.png`, lalu regenerate `public/favicon-dark.png`, `public/favicon-light.png`, `public/apple-touch-icon.png`, dan `public/og.png`
 - **Placeholder instalasi**: ganti `<repo-url>` di `src/data/content.js` setelah repo produk public
 - **Social preview**: setelah deploy, jadikan URL `og:image` absolut (misal `https://domain-kamu/og.png`) supaya kebaca semua platform
 
