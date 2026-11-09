@@ -379,11 +379,11 @@ svg {
 }
 
 .hl {
-  padding: 0 0.08em;
+  display: inline-block;
+  padding: 0.08em 0.08em 0.06em;
   background: var(--fg);
   color: var(--bg);
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
+  line-height: 0.8;
 }
 
 .lede {
