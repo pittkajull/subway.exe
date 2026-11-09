@@ -1,106 +1,87 @@
-# subway.exe — marketing site
+<p align="center">
+  <img src="./public/og.png" alt="subway.exe — social media, in your terminal" width="760" />
+</p>
 
-Landing page for **subway.exe**, a real social network that lives in the terminal. Users install a global CLI with npm; posts, follows, and messages live on the server, so the account is the same from any machine.
+<h1 align="center">subway.exe</h1>
 
-> This repo is the marketing website only (React + Vite, static, no backend). The CLI and server are developed separately and are not public yet.
+<p align="center"><strong>Social media, in your terminal.</strong></p>
 
-## Product scope
+<p align="center">
+  <img alt="Status: alpha, not released" src="https://img.shields.io/badge/status-alpha%20%C2%B7%20not%20released-black?style=flat-square" />
+  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-black?style=flat-square" />
+</p>
 
-**MVP (current focus):** register, login, logout, `whoami`, text posts, a live chronological feed, likes, comments, follow/unfollow, profiles, and realtime 1:1 chat.
+subway.exe is a real social network that lives in the terminal. You install the CLI once, sign in, and posts, follows, and messages stay on the server — the same account from any machine.
 
-**Phase 2 (next, not built yet):** profile management, public/private accounts with a global feed, an interactive menu, edit/delete, reposts, and 24-hour stories.
+> [!NOTE]
+> This repository contains the marketing website only. The CLI and server are developed separately and are not public yet.
+
+## Installation
+
+The product is not released. There is no public npm package and no public server to connect to.
+
+The planned install, once it ships, is:
+
+```bash
+npm install -g subwayexe
+```
+
+This command does not work today. The site marks the install and release status as incomplete instead of advertising something you cannot use.
+
+## The product
+
+**MVP**
+
+- **Account:** register, login, logout, and `whoami`.
+- **Posts:** text posts, a live chronological feed, likes, and comments.
+- **Social:** follow/unfollow and profiles.
+- **Chat:** realtime 1:1 conversations.
+
+**Phase 2:** profile editing and password changes, public/private accounts with a global feed, an interactive menu, edit/delete, reposts, and 24-hour stories.
 
 **Later:** photo posts converted to ASCII art.
 
-The product is not released. The npm package is not published, and the public server is not available. The site describes this explicitly instead of advertising features that cannot be used yet.
+## The site
 
-## What is in this site
+- A terminal-native interface: monospace type, flat surfaces, hard rules, TUI frames, and the real logo.
+- An interactive demo for `feed`, `profile`, and `chat`, with typed commands.
+- A searchable reference for all 19 known commands, tagged `mvp` or `next`.
+- An honest roadmap: MVP scope, missing release work, and the phase 2 sequence.
+- The planned install command, clearly marked **not released**.
+- FAQ, responsive layout, light/dark favicons, a social preview, and reduced-motion support.
 
-- Terminal-native UI: monospace type, flat surfaces, hard rules, TUI frames, and the real logo.
-- Interactive terminal demo (`feed`, `profile`, `chat`) with typed commands.
-- Feature walkthroughs for the MVP feed, chat, and profiles.
-- Searchable command reference for all 19 known commands, tagged `mvp` or `next`.
-- Honest roadmap: MVP scope, missing release work, and the phase 2 sequence.
-- Planned install (`npm install -g subwayexe`) marked as **not released**.
-- FAQ, light/dark favicons, a 1200×630 social preview, responsive layout, and reduced-motion support.
+## Development
 
-## Public copy policy
-
-The site is written from the product spec but deliberately keeps internals out of the public page:
-
-- **Published:** product behavior, MVP scope, phase 2 roadmap, command names/flags, install command, and release status.
-- **Not published:** authentication and token internals, REST/WebSocket contracts, database schema and ORM details, visibility query logic, repository layout, hosting/VPS plans, and open security questions (rate limiting, password reset, and similar).
-
-No unconfirmed claim is added to fill a gap. If a fact is not settled, the page leaves it out and says so.
-
-## Stack
-
-- React 19 + Vite 7
-- Plain CSS with a small set of custom properties
-- JetBrains Mono (Google Fonts)
-- Brand assets in `public/`
-
-## Running locally
+Requires Node.js and npm.
 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
 ```
 
-## Build and deploy
+To check the production build:
 
 ```bash
 npm run build    # static output in dist/
-npm run preview  # check the production build locally
+npm run preview
 ```
 
-`dist/` can be deployed to Netlify, Vercel, Cloudflare Pages, GitHub Pages, or any static file server. No environment variables are required.
+`dist/` is a static site and can be served by any static host. No environment variables are required.
 
-## Structure
+All public copy, command data, and roadmap content live in `src/data/content.js`. Keep install and status marked unreleased until the npm package actually ships.
 
-```text
-public/
-  logo.png                transparent logo (navbar, hero, footer)
-  favicon-dark.png        transparent favicon for dark tabs
-  favicon-light.png       transparent favicon for light tabs
-  apple-touch-icon.png    iOS icon
-  og.png                  1200×630 social preview
-src/
-  App.jsx                 section order
-  data/content.js         all public copy, commands, and roadmap data
-  styles.css              design system and layout
-  components/
-    Nav.jsx  Hero.jsx  Why.jsx  Features.jsx
-    Commands.jsx  Status.jsx  Install.jsx  Faq.jsx  Footer.jsx
-    TerminalDemo.jsx      interactive terminal demo
-    CopyButton.jsx        clipboard helper
-    SectionHead.jsx       shared section header
-    terminal/
-      TerminalFrame.jsx   TUI window frame
-      Outputs.jsx         feed, profile, and chat output
-```
+## Contributing
 
-## Editing content
+Issues and pull requests about the marketing site are welcome. The CLI and server are not public yet, so this repository is the only part of the project you can contribute to right now.
 
-- **Copy, commands, roadmap:** `src/data/content.js`
-- **Colors, spacing, type:** CSS custom properties at the top of `src/styles.css`
-- **Brand assets:** replace `public/logo.png`, then regenerate the favicons and `public/og.png`
-- **Install and status:** keep them marked unreleased/incomplete until the npm package actually ships
-- **Command tags:** `phase: 'mvp'` or `phase: 'next'` controls the label and the counts on the page
-- **Social preview:** after deploying, make `og:image` an absolute URL so every platform can read it
+Keep public copy within confirmed product facts: behavior, MVP scope, roadmap, command names and flags, the install command, and release status. Authentication internals, API contracts, database details, hosting plans, and unresolved security decisions stay out.
 
 ## Security
 
-This repo is static and stores no user data, but the rules still apply:
-
-- No API keys, tokens, passwords, or real credentials are committed.
-- Passwords in the install preview are placeholders, not real accounts.
-- `.gitignore` excludes `node_modules/`, `dist/`, all `.env*` files (except `.env.example`), key files (`*.pem`, `*.key`, `*.p12`), `.npmrc`, logs, and caches.
-- Never commit `.env`, tokens, or credential files. If a secret is ever pushed, treat it as leaked: revoke/rotate it first, then clean the history.
-- Report security issues privately through GitHub Security Advisories rather than a public issue.
+This repository is static and stores no user data. Do not commit API keys, tokens, passwords, or credential files. Report security issues privately through GitHub Security Advisories rather than a public issue.
 
 ## License
 
 Released under the [MIT License](./LICENSE) — Copyright (c) 2026 Muhajir Amrullah.
 
-This license covers the website source in this repo. The CLI and server may use a different license.
+This license covers the website source in this repository. The CLI and server may use a different license.
