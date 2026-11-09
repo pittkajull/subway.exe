@@ -23,9 +23,10 @@ export default function Hero() {
           </p>
 
           <h1 className="hero__title">
-            social media,
-            <br />
-            but in your <span className="hl">terminal.</span>
+            <span className="hero__line">social media,</span>
+            <span className="hero__line">
+              but in your <span className="hl">terminal.</span>
+            </span>
           </h1>
 
           <p className="lede">

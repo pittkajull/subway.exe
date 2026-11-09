@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
 import TerminalFrame from './terminal/TerminalFrame.jsx'
 import { ChatOutput, FeedOutput, ProfileOutput } from './terminal/Outputs.jsx'
 
@@ -31,11 +32,14 @@ export default function TerminalDemo() {
   const [typing, setTyping] = useState(false)
   const timer = useRef(null)
   const bodyRef = useRef(null)
+  const outRef = useRef(null)
+  const interacted = useRef(false)
 
   useEffect(() => () => clearInterval(timer.current), [])
 
   function run(key) {
     clearInterval(timer.current)
+    interacted.current = true
     setActive(key)
     const cmd = DEMO[key].cmd
 
@@ -60,6 +64,28 @@ export default function TerminalDemo() {
 
   useEffect(() => {
     if (bodyRef.current) bodyRef.current.scrollTop = 0
+  }, [active, typing])
+
+  useLayoutEffect(() => {
+    if (!interacted.current || typing) return undefined
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+
+    const out = outRef.current
+    if (!out) return undefined
+    const items = out.querySelectorAll('.post, .pcard, .chat__line, .chat__input')
+    if (!items.length) return undefined
+
+    const ctx = gsap.context(() => {
+      gsap.from(items, {
+        autoAlpha: 0,
+        y: 4,
+        duration: 0.18,
+        ease: 'steps(3)',
+        stagger: 0.045,
+      })
+    }, out)
+
+    return () => ctx.revert()
   }, [active, typing])
 
   return (
@@ -91,7 +117,7 @@ export default function TerminalDemo() {
           {typing && <span className="cmdline__caret" aria-hidden="true" />}
         </p>
 
-        <div className="term__out" aria-live="polite">
+        <div className="term__out" ref={outRef} aria-live="polite">
           {typing ? <p className="term__pending">connecting…</p> : DEMO[active].output}
         </div>
       </TerminalFrame>

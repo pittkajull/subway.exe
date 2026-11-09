@@ -378,6 +378,10 @@ svg {
   letter-spacing: -0.055em;
 }
 
+.hero__line {
+  display: block;
+}
+
 .hl {
   display: inline-block;
   padding: 0.08em 0.08em 0.06em;
@@ -561,22 +565,9 @@ svg {
   background: var(--line-2);
 }
 
-.term__out {
-  animation: output-in 0.18s linear both;
-}
-
 .term__pending {
   color: var(--fg-4);
   font-size: 10.5px;
-}
-
-@keyframes output-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .cmdline {

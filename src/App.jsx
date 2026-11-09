@@ -7,8 +7,11 @@ import Status from './components/Status.jsx'
 import Install from './components/Install.jsx'
 import Faq from './components/Faq.jsx'
 import Footer from './components/Footer.jsx'
+import { useSiteMotion } from './useSiteMotion.js'
 
 export default function App() {
+  useSiteMotion()
+
   return (
     <>
       <a className="skip" href="#main">
