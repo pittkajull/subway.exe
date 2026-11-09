@@ -6,6 +6,14 @@ export default function Hero() {
       <div className="hero__glow" aria-hidden="true" />
       <div className="wrap hero__grid">
         <div className="hero__copy">
+          <img
+            className="hero__logo"
+            src="/logo-mark.png"
+            alt=""
+            width="76"
+            height="68"
+          />
+
           <p className="eyebrow">
             <span className="pulse" aria-hidden="true" />
             alpha build · v0.1.0

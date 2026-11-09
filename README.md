@@ -21,6 +21,7 @@ Website ini memperkenalkan produk tersebut dengan tema terminal: headline serif 
 
 ## Isi website
 
+- Logo subway.exe di navbar, hero, footer, favicon, dan social preview.
 - Hero dengan demo terminal interaktif (`feed`, `story feed`, `profile`, `chat`).
 - Marquee command.
 - Enam alasan kenapa produknya CLI.
@@ -57,6 +58,10 @@ Karena hasilnya statis, `dist/` bisa di-deploy ke Netlify, Vercel, Cloudflare Pa
 ## Struktur
 
 ```text
+public/
+  logo-mark.png           logo transparan (navbar, hero, footer)
+  favicon.png             ikon 192×192
+  og.png                  social preview 1200×630
 src/
   App.jsx                 urutan section
   data/content.js         semua copy produk & data command
@@ -76,7 +81,9 @@ src/
 
 - **Teks & data command**: `src/data/content.js`
 - **Warna, tipografi, spacing**: variabel CSS di bagian atas `src/styles.css`
+- **Aset brand**: ganti `public/logo-mark.png`, `public/favicon.png`, dan `public/og.png`
 - **Placeholder instalasi**: ganti `<repo-url>` di `src/data/content.js` setelah repo produk public
+- **Social preview**: setelah deploy, jadikan URL `og:image` absolut (misal `https://domain-kamu/og.png`) supaya kebaca semua platform
 
 ## Keamanan
 

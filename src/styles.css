@@ -255,17 +255,10 @@ svg {
   color: var(--paper);
 }
 
-.brand__prompt {
-  display: inline-grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  border: 1px solid var(--phos-dim);
-  color: var(--phos);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1;
+.brand__logo {
+  flex: none;
+  width: 30px;
+  height: auto;
 }
 
 .brand__exe {
@@ -370,6 +363,12 @@ svg {
   grid-template-columns: 1.06fr 0.94fr;
   gap: clamp(36px, 4.5vw, 64px);
   align-items: center;
+}
+
+.hero__logo {
+  width: clamp(56px, 6vw, 76px);
+  height: auto;
+  margin-bottom: 20px;
 }
 
 .hero__title {
@@ -1538,6 +1537,12 @@ svg {
   grid-template-columns: 1.5fr 0.75fr 0.75fr;
   gap: clamp(28px, 5vw, 64px);
   padding-block: clamp(48px, 7vw, 76px) clamp(36px, 5vw, 56px);
+}
+
+.footer__logo {
+  width: 58px;
+  height: auto;
+  margin-bottom: 18px;
 }
 
 .footer__word {

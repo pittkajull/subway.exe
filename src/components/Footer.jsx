@@ -12,6 +12,13 @@ export default function Footer() {
       <div className="wrap">
         <div className="footer__top">
           <div>
+            <img
+              className="footer__logo"
+              src="/logo-mark.png"
+              alt=""
+              width="58"
+              height="52"
+            />
             <p className="footer__word">
               subway<span>.exe</span>
             </p>

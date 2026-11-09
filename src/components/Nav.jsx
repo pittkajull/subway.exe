@@ -31,9 +31,13 @@ export default function Nav() {
     <header className={`nav ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="wrap nav__inner">
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
-          <span className="brand__prompt" aria-hidden="true">
-            &gt;_
-          </span>
+          <img
+            className="brand__logo"
+            src="/logo-mark.png"
+            alt=""
+            width="30"
+            height="27"
+          />
           <span>
             subway<span className="brand__exe">.exe</span>
           </span>
