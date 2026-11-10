@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="./public/og.png" alt="subway.exe — social media, in your terminal" width="760" />
+  <a href="https://pittkajull.github.io/subway.exe/">
+    <img src="./public/og.png" alt="subway.exe — social media, in your terminal" width="760" />
+  </a>
 </p>
 
 <h1 align="center">subway.exe</h1>
