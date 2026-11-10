@@ -86,5 +86,13 @@ export default defineConfig(({ mode }) => {
   return {
     base: process.env.VITE_BASE_PATH || '/',
     plugins: [react(), seoPlugin(siteUrl)],
+    build: {
+      rollupOptions: {
+        input: {
+          main: 'index.html',
+          notFound: '404.html',
+        },
+      },
+    },
   }
 })
