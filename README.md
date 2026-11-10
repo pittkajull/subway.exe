@@ -56,34 +56,6 @@ This command does not work today. The site marks the install and release status 
 - Canonical metadata, Open Graph and Twitter cards, structured data, a sitemap, and robots rules.
 - FAQ, responsive layout, light/dark favicons, a social preview, and reduced-motion support.
 
-## Development
-
-Requires Node.js and npm.
-
-```bash
-npm install
-npm run dev      # http://localhost:5173
-```
-
-To check the production build:
-
-```bash
-npm run build    # static output in dist/
-npm run preview
-```
-
-`dist/` is a static site and can be served by any static host. Set `VITE_SITE_URL` to the deployed origin before building so canonical URLs, absolute social images, `sitemap.xml`, and the sitemap entry in `robots.txt` use the real domain. Without it, those URL-dependent tags are skipped rather than pointing at a placeholder.
-
-### GitHub Pages
-
-The workflow in `.github/workflows/deploy.yml` builds with `VITE_BASE_PATH=/subway.exe/` and `VITE_SITE_URL=https://pittkajull.github.io/subway.exe`, then publishes `dist/` on every push to `main`.
-
-In the repository, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions** once. The site is served at `https://pittkajull.github.io/subway.exe/`.
-
-If you move to a custom domain at the root, remove `VITE_BASE_PATH` from the workflow and set `VITE_SITE_URL` to that domain.
-
-All public copy, command data, and roadmap content live in `src/data/content.js`. Keep install and status marked unreleased until the npm package actually ships.
-
 ## Contributing
 
 Issues and pull requests about the marketing site are welcome. The CLI and server are not public yet, so this repository is the only part of the project you can contribute to right now.
