@@ -18,6 +18,8 @@
 
 subway.exe is a real social network that lives in the terminal. You install the CLI once, sign in, and posts, follows, and messages stay on the server — the same account from any machine.
 
+The marketing site is live at **[pittkajull.github.io/subway.exe](https://pittkajull.github.io/subway.exe/)**.
+
 > [!NOTE]
 > This repository contains the marketing website only. The CLI and server are developed separately and are not public yet.
 
