@@ -41,6 +41,9 @@ export default function Footer() {
           <p className="footer__note">mvp in development</p>
           <p className="footer__note">npm package: not released</p>
           <p className="footer__note">website: MIT license</p>
+          <a href="https://github.com/pittkajull/subway.exe">
+            github: pittkajull/subway.exe
+          </a>
         </div>
       </div>
 
