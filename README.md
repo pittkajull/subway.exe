@@ -10,6 +10,9 @@
 
 <p align="center">
   <img alt="Status: alpha, not released" src="https://img.shields.io/badge/status-alpha%20%C2%B7%20not%20released-black?style=flat-square" />
+  <a href="https://github.com/pittkajull/subway.exe/actions/workflows/deploy.yml">
+    <img alt="Deploy to GitHub Pages status" src="https://img.shields.io/github/actions/workflow/status/pittkajull/subway.exe/deploy.yml?branch=main&amp;label=deploy&amp;style=flat-square&amp;labelColor=black" />
+  </a>
   <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-black?style=flat-square" />
 </p>
 
